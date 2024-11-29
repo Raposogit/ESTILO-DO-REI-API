@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumindo API com JavaScript</title>
+</head>
+
+<body>
+
+    <h1>IFood:</h1>
+    Voce tem disponivel
+    <p id="pontos"></p> pts
+    <div>
+
+    </div>
+
+    <script>
+        // Esse comando inicia um bloco de código JavaScript. O que está dentro do <script> será executado quando a página for carregada no navegador.
+
+        // Função para consumir a API
+
+
+        fetch('http://127.0.0.1:5000/api/olamundo')
+
+            //.then(): depois de fazer a requisição à API (usando fetch),
+
+            //você precisa lidar com a resposta que o servidor vai te dar. O .then() serve para processar a resposta.
+
+            .then(response => response.json()) // quando a resposta chega, ela é convertida em formato JSON
+
+            //Agora que você tem os dados no formato JSON,
+
+            //o código vai fazer algo com esses dados.
+
+            // A parte data contém as informações que a API retornou
+
+            .then(data => {
+
+                // Exibe a mensagem da API no HTML
+
+                document.getElementById('pontos').textContent = data.pontos;
+
+            })  // trata erros de consumo da API
+
+            .catch(error => {
+                console.error('Erro ao consumir a API:', error);
+            });
+    </script>
+
+</body>
+
+</html>
